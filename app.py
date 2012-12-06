@@ -101,13 +101,16 @@ def CombineSimilarlyNamedFolders(rootDir, dirsToCompare):
 
 	# double loop, bitch
 	for i in range(len(dirsToCompare)):
+		# check if what we're comparing is not a directory itself
+		if not os.path.isdir(rootDir + dirsToCompare[i]):
+			continue		
+		
 		print('Searching for matches for %s...' % dirsToCompare[i])
 		for j in range(len(dirsToCompare)):
-
 			# don't compare a directory to itself, don't compare things that don't exist
-			if i == j: continue
-			if not os.path.isdir(rootDir + dirsToCompare[i]):
+			if i == j: 
 				continue
+			
 			if not os.path.isdir(rootDir + dirsToCompare[j]): 
 				continue
 			
